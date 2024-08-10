@@ -588,6 +588,10 @@
   </section>
 </template>
 
-<script setup></script>
+<script setup lang="ts">
+import { tesloApi } from '@/api/tesloApi';
+
+tesloApi;
+</script>
 
 <style lang="scss" scoped></style>
