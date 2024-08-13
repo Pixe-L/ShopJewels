@@ -99,6 +99,13 @@
   </nav>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useDark, useToggle } from '@vueuse/core';
+
+const isDark = useDark({
+  selector: '',
+});
+const toggleDark = useToggle(isDark);
+</script>
 
 <style scoped></style>
