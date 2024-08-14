@@ -23,7 +23,8 @@
         <!-- Login Button -->
         <button
           type="button"
-          class="rounde mr-3 hidden border border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg"
+          class="rounde mr-3 hidden border dark:text-white border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg"
+          @click="toggleDark()"
         >
           Login
         </button>
@@ -62,12 +63,12 @@
         id="navbar-sticky"
       >
         <ul
-          class="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:text-sm md:font-medium"
+          class="flex flex-col dark:bg-slate-800 rounded-lg border border-gray-100 bg-gray-50 p-4 md:mt-0 md:flex-row md:space-x-9 md:border-0 md:bg-white md:text-sm md:font-medium"
         >
           <li>
             <a
               href="#"
-              class="block rounded bg-blue-700 py-2 pl-3 pr-4 text-white md:bg-transparent md:p-0 md:text-blue-700"
+              class="isActive block rounded bg-blue-700 py-2 pl-3 pr-4 dark:hover:text-white text-white md:bg-transparent md:p-0 md:text-blue-700 dark:text-blue-500"
               aria-current="page"
               >Home</a
             >
@@ -75,21 +76,21 @@
           <li>
             <a
               href="#"
-              class="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+              class="block rounded py-2 pl-3 pr-4 dark:text-white text-gray-700 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
               >About</a
             >
           </li>
           <li>
             <a
               href="#"
-              class="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+              class="block rounded py-2 pl-3 pr-4 dark:text-white text-gray-700 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
               >Services</a
             >
           </li>
           <li>
             <a
               href="#"
-              class="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+              class="block rounded py-2 pl-3 pr-4 dark:text-white text-gray-700 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
               >Contact</a
             >
           </li>
@@ -100,12 +101,13 @@
 </template>
 
 <script setup lang="ts">
-import { useDark, useToggle } from '@vueuse/core';
-
-const isDark = useDark({
-  selector: '',
-});
-const toggleDark = useToggle(isDark);
+import { inject } from 'vue';
+const isDark = inject('isDark');
+const toggleDark = inject('toggleDark');
 </script>
 
-<style scoped></style>
+<style scoped>
+.isActive {
+  @apply border border-blue-700 p-1;
+}
+</style>
