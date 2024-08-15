@@ -64,34 +64,15 @@
       >
         <ul
           class="flex flex-col dark:bg-slate-800 rounded-lg border border-gray-100 bg-gray-50 p-4 md:mt-0 md:flex-row md:space-x-9 md:border-0 md:bg-white md:text-sm md:font-medium"
+          id="ul"
         >
-          <li>
+          <li v-for="(item, i) in items" :key="i" @click="setActive(i)">
             <a
               href="#"
-              class="isActive block rounded bg-blue-700 py-2 pl-3 pr-4 dark:hover:text-white text-white md:bg-transparent md:p-0 md:text-blue-700 dark:text-blue-500"
+              :class="{ isActive: activeIndex === i }"
+              class="rounded py-2 pl-3 pr-4 dark:text-white text-gray-700 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
               aria-current="page"
-              >Home</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="block rounded py-2 pl-3 pr-4 dark:text-white text-gray-700 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
-              >About</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="block rounded py-2 pl-3 pr-4 dark:text-white text-gray-700 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
-              >Services</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="block rounded py-2 pl-3 pr-4 dark:text-white text-gray-700 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-500"
-              >Contact</a
+              >{{ item }}</a
             >
           </li>
         </ul>
@@ -101,13 +82,22 @@
 </template>
 
 <script setup lang="ts">
-import { inject } from 'vue';
+import { set } from '@vueuse/core';
+import { inject, ref } from 'vue';
+
 const isDark = inject('isDark');
 const toggleDark = inject('toggleDark');
+
+const items = ref(['Home', 'About', 'Services', 'Contact']);
+const activeIndex = ref(null);
+
+const setActive = (i) => {
+  activeIndex.value = i;
+};
 </script>
 
 <style scoped>
 .isActive {
-  @apply border border-blue-700 p-1;
+  @apply border border-blue-500 p-1 text-blue-500;
 }
 </style>
