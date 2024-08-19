@@ -71,7 +71,7 @@
           >NeonJewel's</span
         >
       </a>
-      <div class="mt-2 sm:mt-0 sm:flex md:order-2">
+      <div class="mt-2 flex justify-items-center items-center sm:mt-0 sm:flex md:order-2">
         <!-- Login Button -->
         <button
           type="button"
@@ -115,27 +115,43 @@
             </g>
           </svg>
         </button>
-        <button
-          data-collapse-toggle="navbar-sticky"
-          type="button"
-          class="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden"
-          aria-controls="navbar-sticky"
-          aria-expanded="false"
-        >
-          <span class="sr-only">Open main menu</span>
-          <svg
-            class="h-6 w-6"
-            aria-hidden="true"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
+        <!-- Menu movil -->
+        <button class="drawer md:hidden">
+          <input id="my-drawer" type="checkbox" class="drawer-toggle" />
+          <div class="drawer-content">
+            <!-- Page content here -->
+            <label for="my-drawer" class="btn btn-circle btn-outline hover:bg-blue-500"
+              ><svg
+                class="h-6 w-6"
+                aria-hidden="true"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clip-rule="evenodd"
+                ></path></svg
+            ></label>
+          </div>
+          <div class="drawer-side">
+            <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+            <ul class="menu bg-base-200 text-base-content min-h-full w-full">
+              <!-- Sidebar content here -->
+              <li
+                v-for="(item, i) in items"
+                :key="i"
+                href="#"
+                :class="{ isActive: activeInd === item }"
+                @click="setActive(item)"
+                class="rounded border border-transparent dark:text-white text-gray-700 hover:bg-gray-100 md:p-2 md:hover:bg-transparent md:hover:text-blue-500 cursor-pointer"
+                aria-current="page"
+              >
+                {{ item }}
+              </li>
+            </ul>
+          </div>
         </button>
       </div>
       <div
@@ -167,9 +183,6 @@ import { inject, ref } from 'vue';
 
 const isDark = inject('isDark');
 const toggleDark = inject('toggleDark');
-
-console.log(isDark);
-
 const items = ref(['Home', 'About', 'Services', 'Contact']);
 const activeInd = ref(null);
 const setActive = (i) => {
