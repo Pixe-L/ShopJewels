@@ -128,7 +128,7 @@
           </svg>
           <div class="drawer-side">
             <label for="my-drawer" class="drawer-overlay"></label>
-            <ul class="dark:bg-slate-800 bg-slate-100 text-base-content h-full w-full">
+            <ul class="dark:bg-slate-800 bg-slate-100 text-base-content h-full w-full text-center">
               <!-- Sidebar content here -->
               <li
                 v-for="(item, i) in items"
@@ -136,7 +136,7 @@
                 href="#"
                 :class="{ isActive: activeInd === item }"
                 @click="setActive(item)"
-                class="rounded border border-transparent dark:text-white text-gray-700 hover:bg-gray-100 md:p-2 md:hover:bg-transparent md:hover:text-blue-500 cursor-pointer"
+                class="rounded h-36 border border-transparent dark:text-white text-slate-800 md:p-2 md:hover:text-blue-500 cursor-pointer content-center"
                 aria-current="page"
               >
                 {{ item }}
