@@ -94,6 +94,9 @@
 
   <!-- Product List -->
   <product-list :products="products" />
+
+  <!-- Pagination button -->
+  <button-pagination />
 </template>
 
 <script setup lang="ts">
@@ -101,6 +104,7 @@ import { getProductsAction } from '@/modules/products/actions';
 import ProductList from '@/modules/products/components/ProductList.vue';
 import { useQuery } from '@tanstack/vue-query';
 import CustomLoading from '../components/CustomLoading.vue';
+import ButtonPagination from '@/modules/common/components/ButtonPagination.vue';
 
 const { data: products } = useQuery({
   queryKey: ['products', { page: 1 }],
