@@ -78,6 +78,7 @@
         <button
           type="button"
           class="rounde mr-3 hidden border dark:text-white border-blue-700 py-1.5 px-6 text-center text-sm font-medium text-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 md:inline-block rounded-lg"
+          @click="routeLogin"
         >
           Login
         </button>
@@ -85,6 +86,7 @@
         <button
           type="button"
           class="rounde mr-3 hidden bg-blue-700 py-1.5 px-6 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 md:mr-0 md:inline-block rounded-lg"
+          @click="routeRegister"
         >
           Register
         </button>
@@ -173,11 +175,26 @@
 
 <script setup lang="ts">
 import { inject, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 const isDark = inject('isDark');
 const toggleDark = inject('toggleDark');
 const items = ref(['Home', 'About', 'Services', 'Contact']);
 const activeInd = ref(null);
+const router = useRouter();
+
+const routeLogin = () => {
+  router.push({
+    name: 'login',
+  });
+};
+
+const routeRegister = () => {
+  router.push({
+    name: 'register',
+  });
+};
+
 const setActive = (i) => {
   activeInd.value = i;
 };
