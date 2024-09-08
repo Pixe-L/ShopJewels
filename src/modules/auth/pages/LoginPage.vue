@@ -57,7 +57,7 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref } from 'vue';
+import { reactive, ref, watchEffect } from 'vue';
 import { useAuthStore } from '../stores/auth.store';
 import { useToast } from 'vue-toastification';
 
@@ -81,7 +81,7 @@ const onLogin = async () => {
     return passwordInputRef.value?.focus();
   }
   if (form.rememberMe) {
-    return localStorage.setItem('email', form.email);
+    localStorage.setItem('email', form.email);
   } else {
     localStorage.removeItem('email');
   }
@@ -90,4 +90,13 @@ const onLogin = async () => {
   if (okLogin) return;
   toast.error('User/Password are not corrects!');
 };
+
+// Mantener la info de sesion
+watchEffect(() => {
+  const email = localStorage.getItem('email');
+  if (email) {
+    form.email = email;
+    form.rememberMe = true;
+  }
+});
 </script>
