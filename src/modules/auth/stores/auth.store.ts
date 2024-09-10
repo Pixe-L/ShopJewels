@@ -33,9 +33,14 @@ export const useAuthStore = defineStore('auth', () => {
       const regisResp = await registerAction(fullName, email, password);
       if (!regisResp.ok) {
         logout();
-        return false;
+        return { ok: false, message: regisResp.message };
       }
-    } catch (error) {}
+      user.value = regisResp.user;
+      token.value = regisResp.token;
+      authStatus.value = AuthStatus.Authenticated;
+    } catch (error) {
+      return { ok: false, message: 'Error response register.' };
+    }
   };
 
   const logout = () => {

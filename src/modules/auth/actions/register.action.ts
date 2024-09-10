@@ -23,16 +23,16 @@ export const registerAction = async (
       email,
       password,
     });
+    console.log('error', { data });
     return {
       ok: true,
       user: data.user,
       token: data.token,
     };
   } catch (error) {
-    console.log(error);
     return {
       ok: false,
-      message: 'No se creo el usuario.',
+      message: 'Error creating.',
     };
   }
 };
